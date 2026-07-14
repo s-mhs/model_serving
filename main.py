@@ -13,6 +13,7 @@ def get_response(prompt: str):
                 }
             ]
         },
+        timeout=30
     )
 
 def main() -> int:
