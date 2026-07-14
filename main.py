@@ -21,8 +21,8 @@ def main() -> int:
     response.raise_for_status()
     
     # debug messages
-    print("Status:", response.status_code)
-    print("Body:", response.text)
+    # print("Status:", response.status_code)
+    # print("Body:", response.text)
     
     print(response.json()["message"]["content"])
     
