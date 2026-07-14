@@ -4,7 +4,7 @@ def get_response(prompt: str):
     return requests.post(
         "http://localhost:11434/api/chat",
         json={
-            "model": "qwen3-v1:8b",
+            "model": "qwen3-vl:8b",
             "stream": False,
             "messages": [
                 {
@@ -19,7 +19,11 @@ def main() -> int:
     response = get_response("what's your name?")
     response.raise_for_status()
     
-    print(response.json()["messages"]["content"])
+    # debug messages
+    print("Status:", response.status_code)
+    print("Body:", response.text)
+    
+    print(response.json()["message"]["content"])
     
     return 0 
 
