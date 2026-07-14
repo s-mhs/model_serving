@@ -1,10 +1,10 @@
 import requests
 
-def get_response(prompt: str):
+def get_response(prompt: str, endpoint: str, model: str, timeout: int=30):
     return requests.post(
-        "http://localhost:11434/api/chat",
+        endpoint,
         json={
-            "model": "qwen3-vl:8b",
+            "model": model,
             "stream": False,
             "messages": [
                 {
@@ -13,11 +13,11 @@ def get_response(prompt: str):
                 }
             ]
         },
-        timeout=30
+        timeout=timeout
     )
 
 def main() -> int:
-    response = get_response("what's your name?")
+    response = get_response("what's your name?", "http://localhost:11434/api/chat", "qwen3-vl:8b")
     response.raise_for_status()
     
     # debug messages
